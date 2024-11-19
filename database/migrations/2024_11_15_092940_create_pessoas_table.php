@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('pessoas', function (Blueprint $table) {
             $table->id();
-            $table->nome_completo();
-            $table->nome_do_pai();
-            $table->nome_da_mae();
-            $table->data_de_nascimento();
-            $table->num_doc_identificacao();
-            $table->data_de_expiracao_documento();
-            $table->telefone1();
-            $table->telefone2();
-            $table->email();
-            $table->endereco();
-            $table->nacionalidae();
+            $table->string('nome_completo');
+            $table->string('nome_do_pai');
+            $table->string('nome_da_mae');
+            $table->date('data_de_nascimento');
+            $table->string('num_doc_identificacao');
+            $table->date('data_de_expiracao_documento');
+            $table->string('telefone1');
+            $table->string('telefone2');
+            $table->string('email');
+            $table->string('endereco');
+            $table->string('nacionalidae');
             $table->timestamps();
         });
     }
