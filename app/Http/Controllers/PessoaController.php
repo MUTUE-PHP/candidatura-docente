@@ -31,9 +31,12 @@ class PessoaController extends Controller
     public function store(Request $request)
     {
         //
-        $pessoa = new Pessoa ;
+        // $pessoa = new Pessoa ;
 
-        $pessoa->nome_completo = $request -> nome_completo;
+       $name = $request->nome_completo;
+
+        return response()->json(['Nome Enviado'=>$name],200);
+
     }
 
     /**

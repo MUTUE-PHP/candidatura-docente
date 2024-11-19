@@ -19,37 +19,7 @@ use App\Http\Controllers\{
 */
 
 Route::get('/', function () {
-    return inertia('candidatura');
+    return view('welcome');
 });
-
-Route::get('/dados_pessoais', function () {
-    return inertia('dados_pessoais');
-
-});
-Route::get('/formacao_academica', function () {
-    return inertia('formacao_academica');
-
-});
-
-
-Route::get('/get-nacionalidade', [App\Http\Controllers\NacionalidadeController::class, 'store']);
-Route::resource('docente', DocenteController::class);
-
-
-
-// Auth::routes();
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-/*
-Route::middleware(['auth'])->group(function () {
-    Route::get('/teste', [App\Http\Controllers\NovaController::class, 'index']);
-//    Route::get('/teste_pessoa', [App\Http\Controllers\PessoaController::class, 'index']);
-//    Route::get('/teste_nacionalidade', [App\Http\Controllers\PessoaController::class, 'store']);
-//    Route::get('/teste_nacionalidade', [App\Http\Controllers\NacionalidadeController::class, 'index']);
-
-
-}); */
-
 
 
