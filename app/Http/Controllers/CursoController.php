@@ -13,6 +13,9 @@ class CursoController extends Controller
     public function index()
     {
         //
+       $data = curso::all();
+       return response()->json(['data'=>$data]);
+
     }
 
     /**

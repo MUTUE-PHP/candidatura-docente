@@ -13,8 +13,12 @@ class NacionalidadeController extends Controller
     public function index()
     {
         //
-        $data['dados_nacionalidade'] = nacionalidade::all();
+/*       $data['dados_nacionalidade'] = nacionalidade::all();
         return inertia('dados_pessoais', $data);
+*/
+        $data = nacionalidade::all();
+        return response()->json(['data'=>$data]);
+
     }
 
     /**
