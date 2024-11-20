@@ -1,5 +1,5 @@
 <template>
     <div>
-       <p>Sobre Nós</p>
+       <p>Actualizar Candidatura</p>
     </div>
 </template>
