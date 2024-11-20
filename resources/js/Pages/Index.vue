@@ -80,8 +80,8 @@
                                         <option value="" selected disabled>
                                             Escolher
                                         </option>
-                                        <option value="solteiro">
-                                            Solteiro(a)
+                                        <option v-for="estado_civil in data.estado_civil" :key="estado_civil.id" value="solteiro">
+                                            {{estado_civil.descricao_estado_civil}}
                                         </option>
                                         
                                     </select>
@@ -93,12 +93,11 @@
                                 <div class="custom-input-group">
                                     <label for="tipoDoc">Tipo de Documentação</label>
                                     <select id="tipoDoc">
-                                        <option value="" selected disabled>
+                                        <option value="" selected>
                                             Escolher
                                         </option>
-                                        <option value="bi">BI</option>
-                                        <option value="passaporte">
-                                            Passaporte
+                                        <option v-for="tipo_documento in data.tipo_documentos" :key="tipo_documento.id" value="solteiro">
+                                            {{tipo_documento.descricao_documento}}
                                         </option>
                                     </select>
                                 </div>
@@ -128,9 +127,8 @@
                                         <option value="" selected disabled>
                                             Escolher
                                         </option>
-                                        <option value="bi">Masculino</option>
-                                        <option value="passaporte">
-                                            Femenino
+                                        <option v-for="genero in data.generos" :key="genero.id" value="solteiro">
+                                            {{genero.desecricao_genero}}
                                         </option>
                                     </select>
                                 </div>
@@ -152,12 +150,8 @@
                                         <option value="" selected disabled>
                                             Escolher
                                         </option>
-                                        <option value="bi">Angola</option>
-                                        <option value="passaporte">
-                                            Brasil
-                                        </option>
-                                        <option value="passaporte">
-                                            Moçambique
+                                        <option v-for="nacionalidade in data.nacionalidade" :key="nacionalidade.id" value="solteiro">
+                                            {{nacionalidade.descricao_nacionalidade}}
                                         </option>
                                     </select>
                                 </div>
@@ -254,8 +248,8 @@
                                                 <option value="" selected disabled>
                                                     Escolher
                                                 </option>
-                                                <option v-for="session in sessions" :key="session.id" value="solteiro">
-                                                    {{ session }}
+                                                <option v-for="curso in data.cursos" :key="curso.id" value="solteiro">
+                                                    {{curso.descricao_curso}}
                                                 </option>
                                             </select>
                                         </div>
@@ -269,14 +263,8 @@
                                                 <option value="" selected disabled>
                                                     Escolher
                                                 </option>
-                                                <option value="solteiro">
-                                                    Mestre
-                                                </option>
-                                                <option value="casado">
-                                                    Licenciado
-                                                </option>
-                                                <option value="divorciado">
-                                                    Ensino Médio
+                                                <option v-for="nivel_academico in data.nivel_academico" :key="nivel_academico.id" value="solteiro">
+                                                    {{nivel_academico.descricao_nivel_academico}}
                                                 </option>
                                             </select>
                                         </div>
@@ -562,12 +550,22 @@
 </template>
 
 <script setup>
+import axios from "axios";
 import { reactive, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 const router = useRouter();
 
 const nav = ref('candidatura');
+
+const data = reactive({
+    'nacionalidade' : [],
+    'tipo_documentos' : [],
+    'generos' : [],
+    'estado_civil' : [],
+    'cursos' : [],
+    'nivel_academico' : [],
+});
 
 const sessions_formacao = reactive([1]);
 const sessions_experiencia = reactive([1]);
@@ -615,7 +613,20 @@ function removerExperiencia() {
 }
 
 onMounted(() => {
-    
+  axios
+  .get("http://localhost:8000/api/dados_pessoais")
+  .then((res) => {
+        data.nacionalidade = res.data.data.nacionalidade;
+        data.tipo_documentos = res.data.data.tipo_documentos;
+        data.generos = res.data.data.generos;
+        data.estado_civil = res.data.data.estado_civil;
+        data.cursos = res.data.data.cursos;
+        data.nivel_academico = res.data.data.nivel_academico;
+
+  })
+  .catch((error) => {
+          console.log(error);
+  });
 })
 
 </script>
