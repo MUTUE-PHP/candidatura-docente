@@ -33,9 +33,11 @@ class PessoaController extends Controller
         //
         // $pessoa = new Pessoa ;
 
-       $name = $request->nome_completo;
+    //    $name = $request->nome_completo;
 
-        return response()->json(['Nome Enviado'=>$name],200);
+        return response()->json($request->all(),200);
+
+        // return response()->json('success',200);
 
     }
 

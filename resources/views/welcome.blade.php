@@ -37,6 +37,11 @@
             font-style: normal;
         }
 
+        .modal-header,
+        .modal-footer {
+            border: none !important;
+        }
+
         .text-white {
             color: white;
         }
@@ -192,61 +197,62 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script>
-        
-document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", () => {
 
-const prevBtns = document.querySelectorAll(".btn-prev");
-const nextBtns = document.querySelectorAll(".btn-next");
-const progress = document.getElementById("progress");
-const formSteps = document.querySelectorAll(".form-step");
-const progressSteps = document.querySelectorAll(".progress-step");
+            const prevBtns = document.querySelectorAll(".btn-prev");
+            const nextBtns = document.querySelectorAll(".btn-next");
+            const progress = document.getElementById("progress");
+            const formSteps = document.querySelectorAll(".form-step");
+            const progressSteps = document.querySelectorAll(".progress-step");
 
-let formStepsNum = 0;
+            let formStepsNum = 0;
 
 
-nextBtns.forEach(btn => {
-    btn.addEventListener("click", (event) => {
-        event.preventDefault();
-        formStepsNum++;
-        updateFormStep();
-        updateProgressBar();
-    })
-});
+            nextBtns.forEach(btn => {
+                btn.addEventListener("click", (event) => {
+                alert('ola cheguei aqui')
 
-prevBtns.forEach(btn => {
-    btn.addEventListener("click", (event) => {
-        event.preventDefault();
-        formStepsNum--;
-        updateFormStep();
-        updateProgressBar();
-    })
-});
+                    // event.preventDefault();
+                    // formStepsNum++;
+                    // updateFormStep();
+                    // updateProgressBar();
+                })
+            });
 
-function updateFormStep() {
-    formSteps.forEach(form => {
-        form.classList.contains('form-step-active') && form.classList.remove(
-            'form-step-active');
-    })
+            prevBtns.forEach(btn => {
+                btn.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    formStepsNum--;
+                    updateFormStep();
+                    updateProgressBar();
+                })
+            });
 
-    formSteps[formStepsNum].classList.add("form-step-active");
-}
+            function updateFormStep() {
+                formSteps.forEach(form => {
+                    form.classList.contains('form-step-active') && form.classList.remove(
+                        'form-step-active');
+                })
 
-function updateProgressBar() {
-    progressSteps.forEach((progressStep, idx) => {
-        if (idx < formStepsNum + 1) {
-            progressStep.classList.add('progress-step-active');
-        } else {
-            progressStep.classList.remove('progress-step-active');
-        }
-    })
+                formSteps[formStepsNum].classList.add("form-step-active");
+            }
 
-    const progressActive = document.querySelectorAll(".progress-step-active");
+            function updateProgressBar() {
+                progressSteps.forEach((progressStep, idx) => {
+                    if (idx < formStepsNum + 1) {
+                        progressStep.classList.add('progress-step-active');
+                    } else {
+                        progressStep.classList.remove('progress-step-active');
+                    }
+                })
 
-    progress.style.width = ((progressActive.length - 1) / (progressSteps.length - 1) * 100 + "%");
+                const progressActive = document.querySelectorAll(".progress-step-active");
 
-}
+                progress.style.width = ((progressActive.length - 1) / (progressSteps.length - 1) * 100 + "%");
 
-});
+            }
+
+        });
     </script>
 </body>
 

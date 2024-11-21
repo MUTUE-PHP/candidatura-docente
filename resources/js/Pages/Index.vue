@@ -22,15 +22,18 @@
                     </div>
 
                     <div class="d-flex flex-column">
-                        <a href="#" @click="changeNav('candidatura')" :class="['buttons-nav', {'navbackground': nav === 'candidatura'} ]">
+                        <a href="#" @click="changeNav('candidatura')"
+                            :class="['buttons-nav', { 'navbackground': nav === 'candidatura' }]">
                             <i class="fa fa-user-plus icon-buttons-nav me-2"></i>
                             Nova Candidatura
                         </a>
-                        <a href="#" @click="changeNav('actualizar')" :class="['buttons-nav', {'navbackground': nav === 'actualizar'} ]">
+                        <a href="#" @click="changeNav('actualizar')"
+                            :class="['buttons-nav', { 'navbackground': nav === 'actualizar' }]">
                             <i class="fa fa-refresh icon-buttons-nav me-2"></i>
                             Actualizar Candidatura
                         </a>
-                        <a href="#" @click="changeNav('recibo')" :class="['buttons-nav', {'navbackground': nav === 'recibo'} ]">
+                        <a href="#" @click="changeNav('recibo')"
+                            :class="['buttons-nav', { 'navbackground': nav === 'recibo' }]">
                             <i class="fa fa-print icon-buttons-nav me-2"></i>
                             Recibo de Candidatura
                         </a>
@@ -39,7 +42,7 @@
             </div>
 
             <!-- NOVA CANDIDATURA -->
-            <div class="col-7"  v-if="nav == 'candidatura'">
+            <div class="col-7" v-if="nav == 'candidatura'">
                 <h1 class="text-center" style="
                         color: #323485;
                         font-size: 30px;
@@ -48,7 +51,7 @@
                     Nova Candidatura
                 </h1>
 
-                <form class="form" style="padding: 0px 50px">
+                <form class="form" style="padding: 0px 50px" @submit.prevent="submitForm">
                     <!-- Progress Bar -->
                     <div class="progressbar">
                         <div class="progress" id="progress"></div>
@@ -67,23 +70,23 @@
                             <!-- Nome Completo -->
                             <div class="col-md-6">
                                 <div class="custom-input-group">
-                                    <label for="nomeCompleto">Nome Completo</label>
-                                    <input type="text" id="nomeCompleto" placeholder="Introduza seu nome" />
+                                    <label for="nome_completo">Nome Completo</label>
+                                    <input type="text" id="nome_completo" v-model="nome_completo" placeholder="Introduza seu nome" />
                                 </div>
                             </div>
 
                             <!-- Estado Civil -->
                             <div class="col-md-6">
                                 <div class="custom-input-group">
-                                    <label for="estadoCivil">Estado Civil</label>
-                                    <select id="estadoCivil">
-                                        <option value="" selected disabled>
+                                    <label for="fk_estado_civil">Estado Civil</label>
+                                    <select id="fk_estado_civil" v-model="fk_estado_civil ">
+                                        <option value="null" selected>
                                             Escolher
                                         </option>
-                                        <option v-for="estado_civil in data.estado_civil" :key="estado_civil.id" value="solteiro">
-                                            {{estado_civil.descricao_estado_civil}}
+                                        <option v-for="estado_civil in data.estado_civil" :key="estado_civil.id" :value="estado_civil.id">
+                                            {{ estado_civil.descricao_estado_civil }}
                                         </option>
-                                        
+
                                     </select>
                                 </div>
                             </div>
@@ -91,13 +94,14 @@
                             <!-- Tipo de Documentação -->
                             <div class="col-md-6">
                                 <div class="custom-input-group">
-                                    <label for="tipoDoc">Tipo de Documentação</label>
-                                    <select id="tipoDoc">
-                                        <option value="" selected>
+                                    <label for="fk_tipo_documento_identificacao">Tipo de Documentação</label>
+                                    <select id="fk_tipo_documento_identificacao" v-model="fk_tipo_documento_identificacao">
+                                        <option disabled selected>
                                             Escolher
                                         </option>
-                                        <option v-for="tipo_documento in data.tipo_documentos" :key="tipo_documento.id" value="solteiro">
-                                            {{tipo_documento.descricao_documento}}
+                                        <option v-for="tipo_documento in data.tipo_documentos" :key="tipo_documento.id"
+                                            :value="tipo_documento.id">
+                                            {{ tipo_documento.descricao_documento }}
                                         </option>
                                     </select>
                                 </div>
@@ -106,29 +110,29 @@
                             <!-- Nº do BI/Passaporte -->
                             <div class="col-md-6">
                                 <div class="custom-input-group">
-                                    <label for="numeroDoc">Nº do BI/Passaporte</label>
-                                    <input type="text" id="numeroDoc" placeholder="Inserir Nº do BI/Passaporte" />
+                                    <label for="num_doc_identificacao">Nº do BI/Passaporte</label>
+                                    <input type="text" id="num_doc_identificacao" v-model="num_doc_identificacao" placeholder="Inserir Nº do BI/Passaporte" />
                                 </div>
                             </div>
 
                             <!-- Nome Completo (Outro) -->
                             <div class="col-md-6">
                                 <div class="custom-input-group">
-                                    <label for="campo2">Data de Nascimento</label>
-                                    <input type="date" id="campo2" placeholder="Introduza seu nome" />
+                                    <label for="data_de_nascimento">Data de Nascimento</label>
+                                    <input type="date" id="data_de_nascimento" v-model="data_de_nascimento" />
                                 </div>
                             </div>
 
                             <!-- Tipo de Documentação -->
                             <div class="col-md-6">
                                 <div class="custom-input-group">
-                                    <label for="tipoDoc">Gênero</label>
-                                    <select id="tipoDoc">
-                                        <option value="" selected disabled>
+                                    <label for="fk_genero">Gênero</label>
+                                    <select id="fk_genero" v-model="fk_genero">
+                                        <option value="null" selected>
                                             Escolher
                                         </option>
-                                        <option v-for="genero in data.generos" :key="genero.id" value="solteiro">
-                                            {{genero.desecricao_genero}}
+                                        <option v-for="genero in data.generos" :key="genero.id" :value="genero.id">
+                                            {{ genero.desecricao_genero }}
                                         </option>
                                     </select>
                                 </div>
@@ -150,8 +154,9 @@
                                         <option value="" selected disabled>
                                             Escolher
                                         </option>
-                                        <option v-for="nacionalidade in data.nacionalidade" :key="nacionalidade.id" value="solteiro">
-                                            {{nacionalidade.descricao_nacionalidade}}
+                                        <option v-for="nacionalidade in data.nacionalidade" :key="nacionalidade.id"
+                                            value="solteiro">
+                                            {{ nacionalidade.descricao_nacionalidade }}
                                         </option>
                                     </select>
                                 </div>
@@ -249,7 +254,7 @@
                                                     Escolher
                                                 </option>
                                                 <option v-for="curso in data.cursos" :key="curso.id" value="solteiro">
-                                                    {{curso.descricao_curso}}
+                                                    {{ curso.descricao_curso }}
                                                 </option>
                                             </select>
                                         </div>
@@ -263,8 +268,9 @@
                                                 <option value="" selected disabled>
                                                     Escolher
                                                 </option>
-                                                <option v-for="nivel_academico in data.nivel_academico" :key="nivel_academico.id" value="solteiro">
-                                                    {{nivel_academico.descricao_nivel_academico}}
+                                                <option v-for="nivel_academico in data.nivel_academico"
+                                                    :key="nivel_academico.id" value="solteiro">
+                                                    {{ nivel_academico.descricao_nivel_academico }}
                                                 </option>
                                             </select>
                                         </div>
@@ -469,21 +475,21 @@
                             </div>
 
                         </div>
-                         <!-- Btn -->
-                         <div class="row d-flex justify-content-between mt-4">
+                        <!-- Btn -->
+                        <div class="row d-flex justify-content-between mt-4">
                             <a href="#" class="btn btn-prev" style="
                                     background-color: #898989;
                                     color: white;
                                     text-align: center;
                                     width: 30%;
                                 ">Anterior</a>
-                            <a href="#" class="btn btn-next" style="
+                            <button type="submit" class="btn" style="
                                     background-color: #1f2058;
                                     color: white;
                                     text-align: center;
                                     width: 30%;
                                 ">Finalizar
-                                <i class="fas fa-arrow-alt-circle-right" style="margin-left: 10px"></i></a>
+                                <i class="fas fa-arrow-alt-circle-right" style="margin-left: 10px"></i></button>
                         </div>
                     </div>
 
@@ -492,7 +498,7 @@
 
 
             <!-- RECIBO DE CANDIDATURA -->
-            <div class="col-7"  v-if="nav == 'recibo'">
+            <div class="col-7" v-if="nav == 'recibo'">
                 <h1 class="text-center" style="
                         color: #323485;
                         font-size: 30px;
@@ -503,10 +509,35 @@
                 <!-- Nome Completo -->
                 <div class="custom-input-group" style="margin: 80px 50px; text-align: center;">
                     <label for="n_candidatura">Nº da Candidatura</label>
-                    <input type="text" style="width: 100%; margin-bottom: 50px;" id="n_candidatura" placeholder="Nº da Candidatura" />
-                    <a href="#" style="padding: 10px 80px;background-color: #1f2058; color: white; border-radius: 10px; text-decoration: none;">
-                        Imprimir 
+                    <input type="text" style="width: 100%; margin-bottom: 50px;" id="n_candidatura"
+                        placeholder="Nº da Candidatura" />
+                    <a href="#"
+                        style="padding: 10px 80px;background-color: #1f2058; color: white; border-radius: 10px; text-decoration: none;">
+                        Imprimir
                         <i style="margin-left: 20px;" class="fa fa-print"></i>
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- ACTUALIZAR CANDIDATURA STEP 1 -->
+            <div class="col-7" v-if="nav == 'actualizar'">
+                <h1 class="text-center" style="
+                        color: #323485;
+                        font-size: 30px;
+                    ">
+                    Actualizar Candidatura
+                </h1>
+
+                <!-- Nome Completo -->
+                <div class="custom-input-group" style="margin: 80px 50px; text-align: center;">
+                    <label for="n_candidatura">BI/Passaporte</label>
+                    <input type="text" required style="width: 100%; margin-bottom: 50px;" id="n_candidatura"
+                        placeholder="Informe o seu nº do BI/Passaporte" />
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        style="padding: 10px 80px;background-color: #1f2058; color: white; border-radius: 10px; text-decoration: none;">
+                        Pesquisar
+                        <i style="margin-left: 20px;" class="fa fa-search"></i>
                     </a>
                 </div>
             </div>
@@ -547,26 +578,39 @@
             </div>
         </div>
     </div>
+
+    <!-- MODAL CONFIRM CODE -->
+    <Modal></Modal>
+
 </template>
 
 <script setup>
 import axios from "axios";
+axios.defaults.baseURL = 'http://localhost:8000/api';
 import { reactive, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import Modal from "../components/Modal.vue";
 
 const router = useRouter();
 
 const nav = ref('candidatura');
 
+// Form Data 1
+
+const fk_genero = ref('');
+
+
+// Dados para inserir nos Selects
 const data = reactive({
-    'nacionalidade' : [],
-    'tipo_documentos' : [],
-    'generos' : [],
-    'estado_civil' : [],
-    'cursos' : [],
-    'nivel_academico' : [],
+    'nacionalidade': [],
+    'tipo_documentos': [],
+    'generos': [],
+    'estado_civil': [],
+    'cursos': [],
+    'nivel_academico': [],
 });
 
+// Dynamic Fields
 const sessions_formacao = reactive([1]);
 const sessions_experiencia = reactive([1]);
 
@@ -595,7 +639,7 @@ function remover() {
 
 }
 
-function changeNav(value){
+function changeNav(value) {
     nav.value = value;
 }
 
@@ -613,21 +657,34 @@ function removerExperiencia() {
 }
 
 onMounted(() => {
-  axios
-  .get("http://localhost:8000/api/dados_pessoais")
-  .then((res) => {
-        data.nacionalidade = res.data.data.nacionalidade;
-        data.tipo_documentos = res.data.data.tipo_documentos;
-        data.generos = res.data.data.generos;
-        data.estado_civil = res.data.data.estado_civil;
-        data.cursos = res.data.data.cursos;
-        data.nivel_academico = res.data.data.nivel_academico;
+    axios
+        .get("/dados_pessoais")
+        .then((res) => {
+            data.nacionalidade = res.data.data.nacionalidade;
+            data.tipo_documentos = res.data.data.tipo_documentos;
+            data.generos = res.data.data.generos;
+            data.estado_civil = res.data.data.estado_civil;
+            data.cursos = res.data.data.cursos;
+            data.nivel_academico = res.data.data.nivel_academico;
 
-  })
-  .catch((error) => {
-          console.log(error);
-  });
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 })
+
+
+function submitForm() {
+    axios
+        .post("http://localhost:8000/api/salvar-pessoa", {})
+        .then((res) => {
+            console.log(res.data)
+            //  window.location.reload();
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
 
 </script>
 
@@ -676,7 +733,7 @@ onMounted(() => {
         border-radius: 50%;
     }
 
-    .navbackground{
+    .navbackground {
         background-color: rgba(217, 217, 217, 0.1);
     }
 }
@@ -698,7 +755,7 @@ onMounted(() => {
         border-radius: 5px;
     }
 
-   
+
 
     .icon-buttons-nav {
         color: #1f2058;
@@ -717,7 +774,7 @@ onMounted(() => {
         text-decoration: none;
         color: white;
         margin-bottom: 40px;
-        
+
     }
 
     .buttons-nav:hover {
