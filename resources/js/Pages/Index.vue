@@ -71,7 +71,8 @@
                             <div class="col-md-6">
                                 <div class="custom-input-group">
                                     <label for="nome_completo">Nome Completo</label>
-                                    <input type="text" id="nome_completo" v-model="nome_completo" placeholder="Introduza seu nome" />
+                                    <input type="text" id="nome_completo" v-model="form_data_1.nome_completo"
+                                        placeholder="Introduza seu nome" />
                                 </div>
                             </div>
 
@@ -79,11 +80,12 @@
                             <div class="col-md-6">
                                 <div class="custom-input-group">
                                     <label for="fk_estado_civil">Estado Civil</label>
-                                    <select id="fk_estado_civil" v-model="fk_estado_civil ">
-                                        <option value="null" selected>
+                                    <select v-model="form_data_1.fk_estado_civil">
+                                        <option value="" selected disabled>
                                             Escolher
                                         </option>
-                                        <option v-for="estado_civil in data.estado_civil" :key="estado_civil.id" :value="estado_civil.id">
+                                        <option v-for="estado_civil in data.estado_civil" :key="estado_civil.id"
+                                            :value="estado_civil.id">
                                             {{ estado_civil.descricao_estado_civil }}
                                         </option>
 
@@ -95,8 +97,8 @@
                             <div class="col-md-6">
                                 <div class="custom-input-group">
                                     <label for="fk_tipo_documento_identificacao">Tipo de Documentação</label>
-                                    <select id="fk_tipo_documento_identificacao" v-model="fk_tipo_documento_identificacao">
-                                        <option disabled selected>
+                                    <select v-model="form_data_1.fk_tipo_documento_identificacao">
+                                        <option value="" selected disabled>
                                             Escolher
                                         </option>
                                         <option v-for="tipo_documento in data.tipo_documentos" :key="tipo_documento.id"
@@ -111,7 +113,9 @@
                             <div class="col-md-6">
                                 <div class="custom-input-group">
                                     <label for="num_doc_identificacao">Nº do BI/Passaporte</label>
-                                    <input type="text" id="num_doc_identificacao" v-model="num_doc_identificacao" placeholder="Inserir Nº do BI/Passaporte" />
+                                    <input type="text" id="num_doc_identificacao"
+                                        v-model="form_data_1.num_doc_identificacao"
+                                        placeholder="Inserir Nº do BI/Passaporte" />
                                 </div>
                             </div>
 
@@ -119,7 +123,8 @@
                             <div class="col-md-6">
                                 <div class="custom-input-group">
                                     <label for="data_de_nascimento">Data de Nascimento</label>
-                                    <input type="date" id="data_de_nascimento" v-model="data_de_nascimento" />
+                                    <input type="date" id="data_de_nascimento"
+                                        v-model="form_data_1.data_de_nascimento" />
                                 </div>
                             </div>
 
@@ -127,8 +132,8 @@
                             <div class="col-md-6">
                                 <div class="custom-input-group">
                                     <label for="fk_genero">Gênero</label>
-                                    <select id="fk_genero" v-model="fk_genero">
-                                        <option value="null" selected>
+                                    <select v-model="form_data_1.fk_genero">
+                                        <option value="" selected disabled>
                                             Escolher
                                         </option>
                                         <option v-for="genero in data.generos" :key="genero.id" :value="genero.id">
@@ -141,58 +146,66 @@
                             <!-- Nome Completo (Outro) -->
                             <div class="col-md-6">
                                 <div class="custom-input-group">
-                                    <label for="campo2">Data de Validade</label>
-                                    <input type="date" id="campo2" placeholder="Introduza seu nome" />
+                                    <label for="data_de_expiracao_documento">Data de Validade</label>
+                                    <input type="date" id="data_de_expiracao_documento"
+                                        v-model="form_data_1.data_de_expiracao_documento" />
                                 </div>
                             </div>
 
                             <!-- Tipo de Documentação -->
                             <div class="col-md-6">
                                 <div class="custom-input-group">
-                                    <label for="tipoDoc">País de Nacionalidade</label>
-                                    <select id="tipoDoc">
+                                    <label for="fk_nacionalidade ">País de Nacionalidade</label>
+                                    <select v-model="form_data_1.fk_nacionalidade">
                                         <option value="" selected disabled>
                                             Escolher
                                         </option>
                                         <option v-for="nacionalidade in data.nacionalidade" :key="nacionalidade.id"
-                                            value="solteiro">
+                                            :value="nacionalidade.id">
                                             {{ nacionalidade.descricao_nacionalidade }}
                                         </option>
                                     </select>
                                 </div>
                             </div>
 
+                            <!-- Nº de tel -->
+                            <div class="col-md-6">
+                                <div class="custom-input-group">
+                                    <label for="telefone1">Nº de Telefone</label>
+                                    <input type="text" id="telefone1" v-model="form_data_1.telefone1"
+                                        placeholder="(+244) 92xx.xxx.xxx" />
+                                </div>
+                            </div>
+
+                            <!-- Nº de tel alternativo -->
+                            <div class="col-md-6">
+                                <div class="custom-input-group">
+                                    <label for="telefone2">Nº de Telefone</label>
+                                    <input type="text" id="telefone2" v-model="form_data_1.telefone2"
+                                        placeholder="(+244) 92xx.xxx.xxx" />
+                                </div>
+                            </div>
+
+
+
                             <!-- Nº do BI/Passaporte -->
                             <div class="col-md-6">
                                 <div class="custom-input-group">
-                                    <label for="numeroDoc">Nº de Telefone</label>
-                                    <input type="text" id="numeroDoc" placeholder="(+244) 92xx.xxx.xxx" />
+                                    <label for="email">E-mail</label>
+                                    <input type="email" id="email" v-model="form_data_1.email"
+                                        placeholder="seunome@xyz.com" />
                                 </div>
                             </div>
 
                             <!-- Nº do BI/Passaporte -->
                             <div class="col-md-6">
                                 <div class="custom-input-group">
-                                    <label for="numeroDoc">Telefone Alternativo</label>
-                                    <input type="text" id="numeroDoc" placeholder="(+244) 92xx.xxx.xxx" />
+                                    <label for="endereco">Endereço Residencial</label>
+                                    <input type="email" id="endereco" v-model="form_data_1.endereco"
+                                        placeholder="Casa S/N" />
                                 </div>
                             </div>
 
-                            <!-- Nº do BI/Passaporte -->
-                            <div class="col-md-6">
-                                <div class="custom-input-group">
-                                    <label for="numeroDoc">E-mail</label>
-                                    <input type="email" id="numeroDoc" placeholder="seunome@xyz.com" />
-                                </div>
-                            </div>
-
-                            <!-- Nº do BI/Passaporte -->
-                            <div class="col-md-6">
-                                <div class="custom-input-group">
-                                    <label for="numeroDoc">Endereço Residencial</label>
-                                    <input type="email" id="numeroDoc" placeholder="Casa S/N" />
-                                </div>
-                            </div>
                         </div>
                         <div class="row d-flex justify-content-center">
                             <a href="#" class="btn btn-next" style="
@@ -207,53 +220,66 @@
 
                     <!-- Step 2 -->
                     <div class="form-step">
-                        <!-- Content -->
-                        <div v-for="(session, index) in sessions_formacao" :key="session.id" class="classes">
+                        <!-- Formação Academica -->
+                        <div class="classes">
+                            <!-- Botões -->
                             <div class="row">
-                                <div class="d-flex justify-content-between" style="
-                                        border-radius: 8px;
-                                        border: 1px solid #dcdcdc;
-                                        padding: 10px;
+                                <div class="d-flex justify-content-between align-items-center" style="
+                                    border-radius: 8px;
+                                    border: 1px solid #dcdcdc;
+                                    padding: 10px;
+                                ">
+                                    <div class="d-flex justify-content-center  align-items-center">
+                                        <!-- Botão no canto esquerdo -->
+                                        <a class="btn btn-primary" style="
+                                        background-color: #c2c2c2 !important;
+                                        border: none !important; padding: 10px 20px;
+                                    " data-bs-toggle="collapse" href="#collapseExampleuda" role="button"
+                                            aria-expanded="true" aria-controls="collapseExample">
+                                            <i class="fa fa-navicon"></i>
+                                        </a>
+
+                                        <p class="mt-3" style="margin-left: 8px;">Formação Acadêmica</p>
+
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <!-- Botão acrescentar -->
+                                        <a @click="acrescentar" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top"
+                                            data-bs-content="Clique neste botão para adicionar outras formações." class="btn btn-primary" style="
+                                        background-color: #1f2058 !important;
+                                        border: none !important;
                                     ">
-                                    <!-- Botão no canto esquerdo -->
-                                    <a class="btn btn-primary" style="
-                                            background-color: #c2c2c2 !important;
-                                            border: none !important;
-                                        " data-bs-toggle="collapse" :href="'#collapseExampleu' + index" role="button"
-                                        aria-expanded="true" aria-controls="collapseExample">
-                                        <i class="fa fa-navicon"></i>
-                                    </a>
+                                            <i class="fas fa-plus"></i>
+                                        </a>
 
-                                    <!-- Botão acrescentar -->
-                                    <a v-if="index == 0" @click="acrescentar(index)" class="btn btn-primary" style="
-                                            background-color: #1f2058 !important;
-                                            border: none !important;
-                                        ">
-                                        <i class="fas fa-plus"></i>
-                                    </a>
-
-                                    <!-- Botão remover -->
-                                    <a v-if="index != 0" @click="remover()" class="btn btn-primary" style="
-                                            background-color: #B00306 !important;
-                                            border: none !important;
-                                        ">
-                                        <i class="fa fa-close"></i>
-                                    </a>
+                                        <!-- Botão remover -->
+                                        <a @click="remover" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top"
+                                            data-bs-content="Remover Formação." class="btn btn-primary" style="
+                                        background-color: #B00306 !important;
+                                        border: none !important;
+                                        margin-left: 5px;
+                                    ">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
                             <br />
-                            <div class="collapse show" :id="'collapseExampleu' + index">
+
+                            <!-- Content -->
+                            <div class="collapse show" v-for="(session, index) in sessions_formacao" :key="session.id" id="collapseExampleuda">
                                 <div class="row">
                                     <!-- Estado Civil -->
                                     <div class="col-md-6">
                                         <div class="custom-input-group">
-                                            <label for="estadoCivil">Curso</label>
-                                            <select id="estadoCivil">
+                                            <label for="fk_curso">Curso</label>
+                                            <select v-model="session.fk_curso">
                                                 <option value="" selected disabled>
                                                     Escolher
                                                 </option>
-                                                <option v-for="curso in data.cursos" :key="curso.id" value="solteiro">
+                                                <option v-for="curso in data.cursos" :key="curso.id" :value="curso.id">
                                                     {{ curso.descricao_curso }}
                                                 </option>
                                             </select>
@@ -263,13 +289,13 @@
                                     <!-- Estado Civil -->
                                     <div class="col-md-6">
                                         <div class="custom-input-group">
-                                            <label for="estadoCivil">Nível Academico</label>
-                                            <select id="estadoCivil">
+                                            <label for="fk_grau_academico">Nível Academico</label>
+                                            <select id="fk_grau_academico" v-model="session.fk_grau_academico">
                                                 <option value="" selected disabled>
                                                     Escolher
                                                 </option>
                                                 <option v-for="nivel_academico in data.nivel_academico"
-                                                    :key="nivel_academico.id" value="solteiro">
+                                                    :key="nivel_academico.id" :value="nivel_academico.id">
                                                     {{ nivel_academico.descricao_nivel_academico }}
                                                 </option>
                                             </select>
@@ -279,21 +305,135 @@
                                     <!-- Nº do BI/Passaporte -->
                                     <div class="col-md-6">
                                         <div class="custom-input-group">
-                                            <label for="numeroDoc">Instituição</label>
-                                            <input type="text" id="numeroDoc" placeholder="Nhung Technologies" />
+                                            <label for="instituicao_formacao_academica">Instituição</label>
+                                            <input type="text" id="instituicao_formacao_academica"
+                                                v-model="session.instituicao_formacao_academica"
+                                                placeholder="Nhung Technologies" />
                                         </div>
                                     </div>
 
                                     <!-- Nome Completo (Outro) -->
                                     <div class="col-md-6">
                                         <div class="custom-input-group">
-                                            <label for="campo2">Ano de Conclusão</label>
-                                            <input type="date" id="campo2" placeholder="Introduza seu nome" />
+                                            <label for="data_conclusao">Ano de Conclusão</label>
+                                            <input type="date" id="data_conclusao" v-model="session.data_conclusao" />
                                         </div>
                                     </div>
                                 </div>
+                                <hr v-show="sessions_formacao.length > 1"style="width: 20px;"/>
                             </div>
                         </div>
+
+                        <!-- Outras Formações -->
+                        <div class="classes">
+                            <!-- Btns  -->
+                            <div class="row">
+                                <div class="d-flex justify-content-between align-items-center" style="
+                                    border-radius: 8px;
+                                    border: 1px solid #dcdcdc;
+                                    padding: 10px;
+                                ">
+                                    <div class="d-flex justify-content-center  align-items-center">
+                                        <!-- Botão no canto esquerdo -->
+                                        <a class="btn btn-primary" style="
+                                        background-color: #c2c2c2 !important;
+                                        border: none !important; padding: 10px 20px;
+                                    " data-bs-toggle="collapse" href="#collapseExampleuId" role="button"
+                                            aria-expanded="true" aria-controls="collapseExample">
+                                            <i class="fa fa-navicon"></i>
+                                        </a>
+
+                                        <p class="mt-3" style="margin-left: 8px;">Outras Formações</p>
+
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <!-- Botão acrescentar -->
+                                        <a @click="addOutrasFormacoes" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top"
+                                            data-bs-content="Clique neste botão para adicionar outras formações." class="btn btn-primary" style="
+                                        background-color: #1f2058 !important;
+                                        border: none !important;
+                                    ">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+
+                                        <!-- Botão remover -->
+                                        <a @click="removeOutrasFormacoes" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top"
+                                            data-bs-content="Remover Formação." class="btn btn-primary" style="
+                                        background-color: #B00306 !important;
+                                        border: none !important;
+                                        margin-left: 5px;
+                                    ">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br />
+                            <!-- Content -->
+                            <div :class="['collapse' ,{'show':index != 0}]" v-for="(session, index) in outras_formacoes" :key="session.id" id="collapseExampleuId">
+                                <div class="row" v-if="index != 0">
+
+                                    <!-- Instituição -->
+                                    <div class="col-md-6">
+                                        <div class="custom-input-group">
+                                            <label for="curso">Curso</label>
+                                            <input type="text" id="curso" v-model="session.curso_experiencia" placeholder="Curso" />
+                                        </div>
+                                    </div>
+
+                                    <!-- Área -->
+                                    <div class="col-md-6">
+                                        <div class="custom-input-group">
+                                            <label for="instituicao">Instituição</label>
+                                            <input type="text" id="instituicao" v-model="session.instituicao_experiencia" placeholder="Instituição" />
+                                        </div>
+                                    </div>
+
+                                    <!-- Função -->
+                                    <div class="col-md-6">
+                                        <div class="custom-input-group">
+                                            <label for="diciplinas">Disciplinas/Actividades</label>
+                                            <input type="text" id="diciplinas" v-model="session.disciplina_experiencia" placeholder="Disciplinas/Actividades" />
+                                        </div>
+                                    </div>
+
+                                    <!-- Ano de Início -->
+                                    <div class="col-md-6">
+                                        <div class="custom-input-group">
+                                            <label for="anodeinicio">Ano de Início</label>
+                                            <select id="anodeinicio" v-model="session.ano_inicio_exp">
+                                                <option value="" selected disabled>
+                                                    Escolher
+                                                </option>
+                                                <option value="2018">
+                                                    2018
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Ano de Fim -->
+                                    <div class="col-md-6">
+                                        <div class="custom-input-group">
+                                            <label for="anodeinicio">Ano de Fim</label>
+                                            <select id="anodeinicio" v-model="session.ano_fim_exp">
+                                                <option value="" selected disabled>
+                                                    Escolher
+                                                </option>
+                                                <option value="2018">
+                                                    2018
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
 
                         <!-- Btn -->
                         <div class="row d-flex justify-content-between mt-4">
@@ -315,51 +455,62 @@
 
                     <!-- Step 3 -->
                     <div class="form-step">
-                        <!-- Content -->
-                        <div v-for="(session, index) in sessions_experiencia" :key="session.id" class="classes">
+                        <!-- Experiência Docente -->
+                        <div class="classes">
+                            <!-- Btns  -->
                             <div class="row">
-                                <div class="d-flex justify-content-between" style="
+                                <div class="d-flex justify-content-between align-items-center" style="
                                         border-radius: 8px;
                                         border: 1px solid #dcdcdc;
                                         padding: 10px;
                                     ">
-                                    <!-- Botão no canto esquerdo -->
-                                    <a class="btn btn-primary" style="
+                                    <div class="d-flex justify-content-center  align-items-center">
+                                        <!-- Botão no canto esquerdo -->
+                                        <a class="btn btn-primary" style="
                                             background-color: #c2c2c2 !important;
-                                            border: none !important;
-                                        " data-bs-toggle="collapse" :href="'#collapseExampleu' + index" role="button"
-                                        aria-expanded="true" aria-controls="collapseExample">
-                                        <i class="fa fa-navicon"></i>
-                                    </a>
+                                            border: none !important; padding: 10px 20px;
+                                        " data-bs-toggle="collapse" href="#collapseExampleu" role="button"
+                                            aria-expanded="true" aria-controls="collapseExample">
+                                            <i class="fa fa-navicon"></i>
+                                        </a>
 
-                                    <!-- Botão acrescentar -->
-                                    <a v-if="index == 0" @click="acrescentarExperiencia(index)" class="btn btn-primary"
-                                        style="
+                                        <p class="mt-3" style="margin-left: 8px;">Experiência Docente</p>
+
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <!-- Botão acrescentar -->
+                                        <a @click="addExpDocente" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top"
+                                            data-bs-content="Clique neste botão para adicionar outras experiências." class="btn btn-primary" style="
                                             background-color: #1f2058 !important;
                                             border: none !important;
                                         ">
-                                        <i class="fas fa-plus"></i>
-                                    </a>
+                                            <i class="fas fa-plus"></i>
+                                        </a>
 
-                                    <!-- Botão remover -->
-                                    <a v-if="index != 0" @click="removerExperiencia()" class="btn btn-primary" style="
+                                        <!-- Botão remover -->
+                                        <a @click="removeExpDocente" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="top"
+                                            data-bs-content="Remover Experiência." class="btn btn-primary" style="
                                             background-color: #B00306 !important;
                                             border: none !important;
+                                            margin-left: 5px;
                                         ">
-                                        <i class="fa fa-close"></i>
-                                    </a>
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
                             <br />
-                            <div class="collapse show" :id="'collapseExampleu' + index">
+                            <!-- Content -->
+                            <div class="collapse show" v-for="(item, index) in experiencia_docente" :key="index" id="collapseExampleu">
                                 <div class="row">
 
                                     <!-- Instituição -->
                                     <div class="col-md-6">
                                         <div class="custom-input-group">
                                             <label for="instituicao">Instituição</label>
-                                            <input type="text" id="instituicao" placeholder="Instituição" />
+                                            <input type="text" id="instituicao" v-model="item.instituicao_experiencia" placeholder="Instituição" />
                                         </div>
                                     </div>
 
@@ -367,7 +518,7 @@
                                     <div class="col-md-6">
                                         <div class="custom-input-group">
                                             <label for="area">Área</label>
-                                            <input type="text" id="area" placeholder="Área" />
+                                            <input type="text" id="area" v-model="item.area" placeholder="Área" />
                                         </div>
                                     </div>
 
@@ -375,7 +526,7 @@
                                     <div class="col-md-6">
                                         <div class="custom-input-group">
                                             <label for="funcao">Função</label>
-                                            <input type="text" id="funcao" placeholder="Função" />
+                                            <input type="text" id="funcao" v-model="item.funcao" placeholder="Função" />
                                         </div>
                                     </div>
 
@@ -383,12 +534,12 @@
                                     <div class="col-md-6">
                                         <div class="custom-input-group">
                                             <label for="anodeinicio">Ano de Início</label>
-                                            <select id="anodeinicio">
+                                            <select id="anodeinicio" v-model="item.ano_inicio_exp">
                                                 <option value="" selected disabled>
                                                     Escolher
                                                 </option>
                                                 <option value="2018">
-                                                    <p>2018</p>
+                                                    2018
                                                 </option>
                                             </select>
                                         </div>
@@ -398,12 +549,12 @@
                                     <div class="col-md-6">
                                         <div class="custom-input-group">
                                             <label for="anodeinicio">Ano de Fim</label>
-                                            <select id="anodeinicio">
+                                            <select id="anodeinicio"  v-model="item.ano_fim_exp">
                                                 <option value="" selected disabled>
                                                     Escolher
                                                 </option>
                                                 <option value="2018">
-                                                    <p>2018</p>
+                                                    2018
                                                 </option>
                                             </select>
                                         </div>
@@ -411,6 +562,7 @@
 
                                 </div>
                             </div>
+
                         </div>
 
                         <!-- Btn -->
@@ -438,7 +590,7 @@
                             <div class="col-md-6">
                                 <div class="custom-input-group">
                                     <label for="bi_passaporte">BI/Passaporte</label>
-                                    <input type="file" id="bi_passaporte" />
+                                    <input type="file" @change="handleBilhete" id="bi_passaporte" />
                                 </div>
                             </div>
 
@@ -446,7 +598,7 @@
                             <div class="col-md-6">
                                 <div class="custom-input-group">
                                     <label for="certificado_inaress">Certificado INAREES</label>
-                                    <input type="file" id="certificado_inaress" />
+                                    <input type="file" @change="handleCertificado" id="certificado_inaress" />
                                 </div>
                             </div>
 
@@ -454,15 +606,15 @@
                             <div class="col-md-6">
                                 <div class="custom-input-group">
                                     <label for="diplomas">Diplomas</label>
-                                    <input type="file" id="diplomas" />
+                                    <input type="file" multiple @change="handleDiplomas" id="diplomas" />
                                 </div>
                             </div>
 
                             <!-- Currículum -->
                             <div class="col-md-6">
                                 <div class="custom-input-group">
-                                    <label for="curriculum">Diplomas</label>
-                                    <input type="file" id="curriculum" />
+                                    <label for="curriculum">Currículum</label>
+                                    <input type="file" @change="handleCurriculum" id="curriculum" />
                                 </div>
                             </div>
 
@@ -470,7 +622,7 @@
                             <div class="col-md-6">
                                 <div class="custom-input-group">
                                     <label for="agregacao_pedagogica">Agregação Pedagógica</label>
-                                    <input type="file" id="agregacao_pedagogica" />
+                                    <input type="file" @change="handleAgregacao" id="agregacao_pedagogica" />
                                 </div>
                             </div>
 
@@ -585,6 +737,7 @@
 </template>
 
 <script setup>
+import Swal from 'sweetalert2'
 import axios from "axios";
 axios.defaults.baseURL = 'http://localhost:8000/api';
 import { reactive, onMounted, ref } from "vue";
@@ -595,9 +748,30 @@ const router = useRouter();
 
 const nav = ref('candidatura');
 
+const documentos = reactive({
+    'bilhete': '',
+    'certificado_inaress': '',
+    'diplomas': '',
+    'curriculum': '',
+    'agregacao_pedagogica': '',
+});
+
 // Form Data 1
 
-const fk_genero = ref('');
+const form_data_1 = reactive({
+    'nome_completo': '',
+    'fk_estado_civil': '',
+    'fk_tipo_documento_identificacao': '',
+    'num_doc_identificacao': '',
+    'data_de_nascimento': '',
+    'fk_genero': '',
+    'data_de_expiracao_documento': '',
+    'fk_nacionalidade': '',
+    'telefone1': '',
+    'telefone2': '',
+    'email': '',
+    'endereco': '',
+});
 
 
 // Dados para inserir nos Selects
@@ -611,7 +785,37 @@ const data = reactive({
 });
 
 // Dynamic Fields
-const sessions_formacao = reactive([1]);
+const sessions_formacao = reactive([
+    {
+        'instituicao_formacao_academica': '',
+        'fk_curso': '',
+        'data_conclusao': '',
+        'fk_grau_academico': '',
+    },
+]);
+
+// Dynamic Fields
+const outras_formacoes = reactive([
+    {
+        'curso_experiencia': '',
+        'disciplina_experiencia': '',
+        'instituicao_experiencia': '',
+        'ano_inicio_exp': '',
+        'ano_fim_exp': '',
+    },
+]);
+
+// Dynamic Fields
+const experiencia_docente = reactive([
+    {
+        'instituicao_experiencia': '',
+        'area': '',
+        'funcao': '',
+        'ano_inicio_exp': '',
+        'ano_fim_exp': '',
+    },
+]);
+
 const sessions_experiencia = reactive([1]);
 
 function goHome(route) {
@@ -626,16 +830,55 @@ function goHome(route) {
     }
 }
 
-function acrescentar(value) {
-    let val = 1;
-    const valor = val + value;
-
-    sessions_formacao.push(valor);
-
+function acrescentar() {
+    sessions_formacao.push({
+        'instituicao_formacao_academica': '',
+        'fk_curso': '',
+        'data_conclusao': '',
+        'fk_grau_academico': '',
+    });
 }
+
+function addOutrasFormacoes() {
+    outras_formacoes.push(
+        {
+        'curso_experiencia': '',
+        'disciplina_experiencia': '',
+        'instituicao_experiencia': '',
+        'ano_inicio_exp': '',
+        'ano_fim_exp': '',
+    }
+    );
+}
+
+function removeOutrasFormacoes() {
+    outras_formacoes.pop();
+}
+
+
+function addExpDocente() {
+    experiencia_docente.push(
+        {
+        'instituicao_experiencia': '',
+        'area': '',
+        'funcao': '',
+        'ano_inicio_exp': '',
+        'ano_fim_exp': '',
+    }
+    );
+}
+
+function removeExpDocente() {
+    experiencia_docente.pop();
+}
+
 function remover() {
 
-    sessions_formacao.pop();
+    if (sessions_formacao.length != 1) {
+        
+        sessions_formacao.pop();
+
+    }
 
 }
 
@@ -643,18 +886,6 @@ function changeNav(value) {
     nav.value = value;
 }
 
-function acrescentarExperiencia(value) {
-    let val = 1;
-    const valor = val + value;
-
-    sessions_experiencia.push(valor);
-
-}
-function removerExperiencia() {
-
-    sessions_experiencia.pop();
-
-}
 
 onMounted(() => {
     axios
@@ -674,15 +905,111 @@ onMounted(() => {
 })
 
 
+function handleBilhete(event) {
+    documentos.bilhete = event.target.files[0];
+}
+function handleCertificado(event) {
+    documentos.certificado_inaress = event.target.files[0];
+}
+function handleDiplomas(event) {
+    documentos.diplomas = Array.from(event.target.files);
+}
+function handleCurriculum(event) {
+    documentos.curriculum = event.target.files[0];
+}
+function handleAgregacao(event) {
+    documentos.agregacao_pedagogica = event.target.files[0];
+}
+
 function submitForm() {
+
+    let form = new FormData();
+
+    form.append('nome_completo', form_data_1.nome_completo);
+    form.append('fk_estado_civil', form_data_1.fk_estado_civil);
+    form.append('fk_tipo_documento_identificacao', form_data_1.fk_tipo_documento_identificacao);
+    form.append('num_doc_identificacao', form_data_1.num_doc_identificacao);
+    form.append('data_de_nascimento', form_data_1.data_de_nascimento);
+    form.append('fk_genero', form_data_1.fk_genero);
+    form.append('data_de_expiracao_documento', form_data_1.data_de_expiracao_documento);
+    form.append('fk_nacionalidade', form_data_1.fk_nacionalidade);
+    form.append('telefone1', form_data_1.telefone1);
+    form.append('telefone2', form_data_1.telefone2);
+    form.append('email', form_data_1.email);
+    form.append('endereco', form_data_1.endereco);
+
+    // Itera sobre o array e adiciona cada campo ao FormData
+    sessions_formacao.forEach((session, index) => {
+        for (const [key, value] of Object.entries(session)) {
+            form.append(`formacao_academica[${index}][${key}]`, value);
+        }
+    });
+
+    // Itera sobre o array e adiciona cada campo ao FormData
+    outras_formacoes.forEach((session, index) => {
+        if (index != 0) {
+            for (const [key, value] of Object.entries(session)) {
+                form.append(`outras_formacoes[${index}][${key}]`, value);
+            }
+        }
+    });
+
+    // Itera sobre o array e adiciona cada campo ao FormData
+    experiencia_docente.forEach((session, index) => {
+        for (const [key, value] of Object.entries(session)) {
+            form.append(`experiencia_docente[${index}][${key}]`, value);
+        }
+    });
+
+    // Documentos
+    if (documentos.bilhete) {
+        form.append('doc_bilhete', documentos.bilhete);
+    }
+    if (documentos.certificado_inaress) {
+        form.append('doc_certifica_inarees', documentos.certificado_inaress);
+
+    }
+    if (documentos.curriculum) {
+        form.append('doc_curriculum', documentos.curriculum);
+
+    }
+    if (documentos.bilhete) {
+        form.append('doc_agregacao_pedagogica', documentos.bilhete);
+
+    }
+    if (documentos.diplomas) {
+        documentos.diplomas.forEach((value, index) => {
+            form.append(`doc_diplomas[${index}]`, value)
+        })
+    }
+
+    const conf = {
+        header: {
+            'Content-Type': 'multipart/form-data'
+        }
+    }
+
     axios
-        .post("http://localhost:8000/api/salvar-pessoa", {})
+        .post("http://localhost:8000/api/docente-store", form, conf)
         .then((res) => {
-            console.log(res.data)
-            //  window.location.reload();
+            // console.log(res.data)
+            Swal.fire({
+                icon: "success",
+                title: "Candidatura feita com sucesso!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+             window.location.reload();
         })
         .catch((error) => {
-            console.log(error);
+            // console.log(error);
+            Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error.message,
+            });
+            // window.location.reload();
+
         });
 }
 

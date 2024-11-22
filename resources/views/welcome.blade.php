@@ -199,6 +199,11 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
 
+            const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+            popoverTriggerList.forEach(function (popoverTriggerEl) {
+                new bootstrap.Popover(popoverTriggerEl);
+            });
+
             const prevBtns = document.querySelectorAll(".btn-prev");
             const nextBtns = document.querySelectorAll(".btn-next");
             const progress = document.getElementById("progress");
@@ -210,12 +215,12 @@
 
             nextBtns.forEach(btn => {
                 btn.addEventListener("click", (event) => {
-                alert('ola cheguei aqui')
+                // alert('ola cheguei aqui')
 
-                    // event.preventDefault();
-                    // formStepsNum++;
-                    // updateFormStep();
-                    // updateProgressBar();
+                    event.preventDefault();
+                    formStepsNum++;
+                    updateFormStep();
+                    updateProgressBar();
                 })
             });
 

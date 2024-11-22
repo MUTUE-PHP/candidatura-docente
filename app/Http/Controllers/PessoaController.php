@@ -33,6 +33,8 @@ class PessoaController extends Controller
         //
         // $pessoa = new Pessoa ;
 
+        // dd($request->all());
+
     //    $name = $request->nome_completo;
 
         return response()->json($request->all(),200);
