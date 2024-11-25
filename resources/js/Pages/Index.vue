@@ -683,8 +683,8 @@
 
                 <!-- Nome Completo -->
                 <div class="custom-input-group" style="margin: 80px 50px; text-align: center;">
-                    <label for="n_candidatura">BI/Passaporte</label>
-                    <input type="text" required style="width: 100%; margin-bottom: 50px;" id="n_candidatura"
+                    <label for="num_bilhete">BI/Passaporte</label>
+                    <input type="text" v-model="num_bilhete" required style="width: 100%; margin-bottom: 50px;" id="num_bilhete"
                         placeholder="Informe o seu nº do BI/Passaporte" />
                     <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
                         style="padding: 10px 80px;background-color: #1f2058; color: white; border-radius: 10px; text-decoration: none;">
@@ -747,6 +747,13 @@ import Modal from "../components/Modal.vue";
 const router = useRouter();
 
 const nav = ref('candidatura');
+
+
+const num_bilhete = ref('');
+
+function submitBilhete(){
+    axios.post('check-id', {})
+}
 
 const documentos = reactive({
     'bilhete': '',
@@ -990,7 +997,7 @@ function submitForm() {
     }
 
     axios
-        .post("http://localhost:8000/api/docente-store", form, conf)
+        .post("/docente-store", form, conf)
         .then((res) => {
             // console.log(res.data)
             Swal.fire({
