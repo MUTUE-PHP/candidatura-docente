@@ -875,7 +875,7 @@ function removeExpDocente() {
 function remover() {
 
     if (sessions_formacao.length != 1) {
-        
+
         sessions_formacao.pop();
 
     }
@@ -889,14 +889,14 @@ function changeNav(value) {
 
 onMounted(() => {
     axios
-        .get("/dados_pessoais")
+        .get("http://localhost:8000/api/dados_formulario")
         .then((res) => {
             data.nacionalidade = res.data.data.nacionalidade;
             data.tipo_documentos = res.data.data.tipo_documentos;
             data.generos = res.data.data.generos;
             data.estado_civil = res.data.data.estado_civil;
             data.cursos = res.data.data.cursos;
-            data.nivel_academico = res.data.data.nivel_academico;
+            data.nivel_academico = res.data.data.tb_grau_academico;
 
         })
         .catch((error) => {
@@ -990,19 +990,19 @@ function submitForm() {
     }
 
     axios
-        .post("http://localhost:8000/api/docente-store", form, conf)
+        .post("http://localhost:8000/api/docente", form, conf)
         .then((res) => {
-            // console.log(res.data)
+            console.log(res.data)
             Swal.fire({
                 icon: "success",
                 title: "Candidatura feita com sucesso!",
                 showConfirmButton: false,
                 timer: 1500
             });
-             window.location.reload();
+            //  window.location.reload();
         })
         .catch((error) => {
-            // console.log(error);
+            console.log(error);
             Swal.fire({
             icon: "error",
             title: "Oops...",
