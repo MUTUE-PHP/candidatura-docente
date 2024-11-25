@@ -28,17 +28,11 @@ Route::controller(PessoaController::class)->group(function(){
 
 });
 
-/*------------rota para enviar todos os dados necessários para o formulario docentes-----------------------
---------------Descricao: informações para as combobox
---------------Metodo: get
-*/
-Route::get('dados_pessoais',[DocenteController::class,'index']);
-
-/*------------                    -----------------------
---------------Descricao:
---------------Metodo: Post
-*/
-Route::post('/docente-store', [DocenteController::class, 'store']);
-
+Route::get('dados_formulario',[DocenteController::class,'index']);
+Route::post('docente',[DocenteController::class,'store']);
+Route::get('docente/{id}',[DocenteController::class,'show']);
+Route::get('docente/edit/{id}',[DocenteController::class,'edit']);
+Route::put('docente/update/{id}',[DocenteController::class,'update']);
+Route::delete('docente/destroy/{id}',[DocenteController::class,'destroy']);
 
 
