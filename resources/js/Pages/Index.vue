@@ -296,7 +296,7 @@
                                                 </option>
                                                 <option v-for="nivel_academico in data.nivel_academico"
                                                     :key="nivel_academico.id" :value="nivel_academico.id">
-                                                    {{ nivel_academico.descricao_nivel_academico }}
+                                                    {{ nivel_academico.descr_grau_academico }}
                                                 </option>
                                             </select>
                                         </div>
@@ -683,8 +683,8 @@
 
                 <!-- Nome Completo -->
                 <div class="custom-input-group" style="margin: 80px 50px; text-align: center;">
-                    <label for="n_candidatura">BI/Passaporte</label>
-                    <input type="text" required style="width: 100%; margin-bottom: 50px;" id="n_candidatura"
+                    <label for="num_bilhete">BI/Passaporte</label>
+                    <input type="text" v-model="num_bilhete" required style="width: 100%; margin-bottom: 50px;" id="num_bilhete"
                         placeholder="Informe o seu nº do BI/Passaporte" />
                     <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
                         style="padding: 10px 80px;background-color: #1f2058; color: white; border-radius: 10px; text-decoration: none;">
@@ -747,6 +747,13 @@ import Modal from "../components/Modal.vue";
 const router = useRouter();
 
 const nav = ref('candidatura');
+
+
+const num_bilhete = ref('');
+
+function submitBilhete(){
+    axios.post('check-id', {})
+}
 
 const documentos = reactive({
     'bilhete': '',
@@ -891,6 +898,9 @@ onMounted(() => {
     axios
         .get("http://localhost:8000/api/dados_formulario")
         .then((res) => {
+
+            console.log(res.data)
+
             data.nacionalidade = res.data.data.nacionalidade;
             data.tipo_documentos = res.data.data.tipo_documentos;
             data.generos = res.data.data.generos;
