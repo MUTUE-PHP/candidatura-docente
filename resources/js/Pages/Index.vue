@@ -296,7 +296,7 @@
                                                 </option>
                                                 <option v-for="nivel_academico in data.nivel_academico"
                                                     :key="nivel_academico.id" :value="nivel_academico.id">
-                                                    {{ nivel_academico.descricao_nivel_academico }}
+                                                    {{ nivel_academico.descr_grau_academico }}
                                                 </option>
                                             </select>
                                         </div>
@@ -898,6 +898,9 @@ onMounted(() => {
     axios
         .get("http://localhost:8000/api/dados_formulario")
         .then((res) => {
+
+            console.log(res.data)
+
             data.nacionalidade = res.data.data.nacionalidade;
             data.tipo_documentos = res.data.data.tipo_documentos;
             data.generos = res.data.data.generos;
