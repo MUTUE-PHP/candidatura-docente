@@ -57,7 +57,7 @@ class DocenteController extends Controller
     {
 
     // EXEMPLO DE CASO DE SUCESSO
-    // return response()->json([
+    // return response()->json([s
     //     'dados' => $request->all()
     // ]);
 
