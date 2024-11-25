@@ -62,8 +62,10 @@ class DocenteController extends Controller
     // ]);
 
      try {
+
         //code...
         $request->validate([
+            //------------ Validação de dados para a tabela pessoa-----------------
             'data_de_expiracao_documento' => 'required',
             'data_de_nascimento' => 'required',
             'email' => 'required',
@@ -76,6 +78,9 @@ class DocenteController extends Controller
             'fk_genero' => 'required',
             'fk_nacionalidade' => 'required',
             'fk_tipo_documento_identificacao' => 'required',
+            //------------ Validação de dados para a tabela Formação academica-----------------
+
+            //------------ Validação de dados para a tabela Experiência profissional-----------------
         ]);
 
         $pessoa = Pessoa::create([
@@ -93,6 +98,8 @@ class DocenteController extends Controller
             'fk_tipo_documento_identificacao' => $request->fk_tipo_documento_identificacao,
 
         ]);
+
+
 
         return response()->json([
             'pessoa' => $pessoa,
